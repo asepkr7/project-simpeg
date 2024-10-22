@@ -1,0 +1,287 @@
+@extends('template.main')
+@section('container')
+    <div class="section">
+        <div class="section-header">
+            <div class="section-header-back">
+                <a href="/petugas/data-pegawai" class="btn" title="Back"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <h6 class="text-center  mt-2">Create Data Pegawai &nbsp;</h6>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active">
+                        <a href="/petugas/dashboard">Dashboard</a>
+                    </div>
+                    <div class="breadcrumb-item">
+                        <a href="/petugas/data-pegawai">Pegawai</a>
+                    </div>
+                    <div class="breadcrumb-item">
+                        Create
+                    </div>
+                </div>
+            </div>
+            <div class="section-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Form Data Pegawai</h4>
+                    </div>
+                    <div class="card-body col-md-12">
+                        <form action="/petugas/data-pegawai" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" id="nama" name="nama" class="form-control  @error('nama') is-invalid @enderror" required value="{{ old('nama') }}">
+                                  @error('nama')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="nip" id="nip">Nip</label>
+                                    <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip" value="{{ old('nip') }}">
+                                    @error('nip')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="gelar_depan">Gelar Depan</label>
+                                    <input type="text" id="gelar_depan" name="gelar_depan" class="form-control @error('gelar_depan') is-invalid @enderror" value="{{ old('gelar_depan') }}">
+                                    @error('gelar_depan')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="gelar_belakang" id="nip">Gelar Belakang</label>
+                                    <input type="text" class="form-control @error('gelar_belakang') is-invalid @enderror" name="gelar_belakang" id="gelar_belakang" value="{{ old('gelar_belakang') }}">
+                                    @error('gelar_belakang')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="tempat_lahir">Tempat</label>
+                                    <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control  @error('tempat_lahir') is-invalid @enderror" value="{{ old('tempat_lahir') }}">
+                                    @error('tempat_lahir')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="tanggal_lahir">Tanggal Lahir</label>
+                                    <input type="date" class="form-control datepicker @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+                                    @error('tanggal_lahir')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="gender" class="d-block">Jenis Kelamin</label>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" id="l" name="gender" {{ old('gender') == 'l' ? 'checked' : '' }} value="l" class="form-check-input">
+                                        <label for="l" class="form-check-label">Laki-Laki</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                    <input type="radio" id="gender" name="gender" {{ old('gender') == 'p' ? 'checked' : '' }} value="p" class="form-check-input">
+                                    <label for="p" class="form-check-label">Perempuan</label>
+                                    </div>
+                                     @error('gender')
+                                  <div class="invalid-feedback d-block">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="agama">Agama</label>
+                                    <select name="agama" id="agama" class="form-control select2 select2-hidden-accessible @error('agama') is-invalid @enderror">
+                                        <option value="">-Pilih Agama-</option>
+                                        <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam</option>
+                                        <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>Kristen</option>
+                                        <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>Katolik</option>
+                                        <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu</option>
+                                        <option value="Budha" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha</option>
+                                        <option value="Konghucu" {{ old('agama') == 'Konghucu' ? 'selected' : '' }}>Konghucu</option>
+                                    </select>
+                                     @error('agama')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="gol_darah">Golongan Darah</label>
+                                    <select name="gol_darah" id="gol_darah" class="form-control select2 select2-hidden-accessible  @error('gol_darah') is-invalid @enderror"">
+                                        <option value="">-Pilih Golongan Darah-</option>
+                                        <option value="A" {{ old('gol_darah') =='A'? 'selected' : '' }}>A</option>
+                                        <option value="B" {{ old('gol_darah') =='B'? 'selected' : '' }}>B</option>
+                                        <option value="AB" {{ old('gol_darah') =='AB'? 'selected' : '' }}>AB</option>
+                                        <option value="O" {{ old('gol_darah') =='O'? 'selected' : '' }}>O</option>
+                                        <option value="Tidak Tahu" {{ old('gol_darah') =='Tidah Tahu'? 'selected' : '' }}>Tidak Tahu</option>
+                                    </select>
+                                     @error('gol_darah')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="status_pernikahan">Status Pernikahan</label>
+                                    <select name="status_pernikahan" id="status_pernikahan" class="form-control select2 select2-hidden-accessible  @error('status_pernikahan') is-invalid @enderror">
+                                        <option value="">-Pilih Status Pernikahan-</option>
+                                        <option value="Nikah" {{ old('status_pernikahan') =='Nikah'? 'selected' : '' }}>Nikah</option>
+                                        <option value="Belum Nikah"  {{ old('status_pernikahan') =='Belum Nikah'? 'selected' : '' }}>Belum Nikah</option>
+                                        <option value="Cerai Hidup"  {{ old('status_pernikahan') =='Cerai Hidup'? 'selected' : '' }}>Cerai Hidup</option>
+                                        <option value="Cerai Mati"  {{ old('status_pernikahan') =='Cerai Mati'? 'selected' : '' }}>Cerai Mati</option>
+                                    </select>
+                                     @error('status_pernikahan')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="nik">NIK</label>
+                                    <input type="text" id="nik" name="nik"  value="{{ old('nik') }}" class="form-control @error('nik') is-invalid @enderror">
+                                     @error('nik')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="telp">No. Telp</label>
+                                    <input type="text" class="form-control @error('telp') is-invalid @enderror" value="{{ old('telp') }}"  name="telp" id="telp">
+                                     @error('telp')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="email">Email</label>
+                                    <input value="{{ old('email') }}" type="text" id="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                                     @error('email')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="alamat">Alamat</label>
+                                    <input value="{{ old('alamat') }}" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat">
+                                     @error('alamat')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="npwp">No. NPWP</label>
+                                    <input value="{{ old('npwp') }}" type="text" id="npwp" name="npwp" class="form-control" >
+                                </div>
+                                <div class="col md-6">
+                                    <label for="bpjs">No. BPJS</label>
+                                    <input value="{{ old('bpjs') }}" type="text" class="form-control" name="bpjs" id="bpjs">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="karpeg">KARPEG</label>
+                                    <input value="{{ old('karpeg') }}" type="text" id="karpeg" name="karpeg" class="form-control @error('karpeg') is-invalid @enderror" >
+                                     @error('karpeg')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="status_kepegawaian">Status Kepegawaian</label>
+                                    <select name="status_kepegawaian" id="status_kepegawaian" class="form-control select2 select2-hidden-accessible @error('status_kepegawaian') is-invalid @enderror">
+                                        <option value="">-Status Kepegawaian-</option>
+                                        <option  {{ old('status_kepegawaian') =='PNS'? 'selected' : '' }} value="PNS">PNS</option>
+                                        <option  {{ old('status_kepegawaian') =='PPPK'? 'selected' : '' }} value="PPPK">PPPK</option>
+                                        <option  {{ old('status_kepegawaian') =='TKK'? 'selected' : '' }} value="TKK">TKK</option>
+                                        <option  {{ old('status_kepegawaian') =='Honorer'? 'selected' : '' }} value="Honorer">Honorer</option>
+                                        <option  {{ old('status_kepegawaian') =='CPNS'? 'selected' : '' }} value="CPNS">CPNS</option>
+                                        <option  {{ old('status_kepegawaian') =='Magang'? 'selected' : '' }} value="Magang">Magang</option>
+                                    </select>
+                                     @error('status_kepegawaian')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="no_sk_cpns">No. SK CPNS</label>
+                                    <input value="{{ old('no_sk_cpns') }}" type="text" id="no_sk_cpns" name="no_sk_cpns" class="form-control" >
+                                </div>
+                                <div class="col md-6">
+                                    <label for="tmt_sk_cpns">TMT SK CPNS</label>
+                                    <input value="{{ old('tmt_sk_cpns') }}" type="date" class="form-control" name="tmt_sk_cpns" id="tmt_sk_cpns">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="no_sk_pns">No. SK PNS</label>
+                                    <input value="{{ old('no_sk_pns') }}" type="text" id="no_sk_pns" name="no_sk_pns" class="form-control" >
+                                </div>
+                                <div class="col md-6">
+                                    <label for="tmt_sk_pns">TMT SK PNS</label>
+                                    <input value="{{ old('tmt_sk_pns') }}" type="date" class="form-control" name="tmt_sk_pns" id="tmt_sk_pns">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="masuk_kerja">Masuk Kerja</label>
+                                    <input value="{{ old('masuk_kerja') }}" type="date" id="masuk_kerja" name="masuk_kerja" class="form-control @error('masuk_kerja') is-invalid @enderror" id="masuk_kerja">
+                                    @error('masuk_kerja')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="col md-6">
+                                    <label for="image">Foto</label>
+                                    <img class="img-preview img-fluid mb-3 col-sm-4">
+                                    <input type="file" id="image" class="form-control-file @error('image') is-invalid @enderror" name="image"
+                                     onchange="previewImage()">
+                                                @error('image')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                      @enderror
+                                </div>
+                            </div>
+                            <div>
+                                 <button class="btn btn-success" type="submit"><i class="fas fa-sm fa-paper-plane"></i> Simpan</button>
+                      <button class="btn btn-secondary" type="reset"><i class="fa fa-recycle" aria-hidden="true"></i> Reset</button>
+                      <a href="petugas/data-pegawai" class="btn btn-default"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Batal</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+@endsection
